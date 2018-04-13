@@ -82,6 +82,9 @@
       </li>
     </ul>
   </div>
+        <!-- xss:</script><script>alert('XSS')</script>',
+      xss:'\u003c/script\u003e\u003cscript\u003ealert('XSS')\u003c/script\u003e'
+      xss:'"\u003c/script\u003e\u003cscript\u003ealert('XSS')\u003c/script\u003e' -->
 </template>
 
 <script>
@@ -90,9 +93,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      // xss:'</script><script>alert('XSS')</script>',
-      // xss:'\u003c/script\u003e\u003cscript\u003ealert('XSS')\u003c/script\u003e'
-      // xss:'"\u003c/script\u003e\u003cscript\u003ealert('XSS')\u003c/script\u003e'
+
     }
   }
 }
