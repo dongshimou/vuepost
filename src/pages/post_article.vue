@@ -68,14 +68,40 @@ export default {
 <style scoped>
 .container {
   font-family: "Roboto";
-  width: 600px;
-  margin: 30px auto 0;
+  width: 100%;
+  margin: 0;
   display: block;
   background: #fff;
-  padding: 10px 10px 50px;
+  padding-bottom:25px;
 }
 
 progress-button {
   margin-top: 10vw;
+}
+</style>
+
+<style lang="scss">
+.btn {
+  color: #666;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  // font-weight: 400;
+  line-height: 35px;
+  margin: auto;
+
+  margin-top:25px;
+  max-width: 100px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 100%;
+  text-shadow: none;
+  border: 0 solid;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 </style>
