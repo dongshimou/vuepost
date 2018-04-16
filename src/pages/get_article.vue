@@ -15,33 +15,48 @@
     <strong class="article-nav-caption">></strong>
     </router-link>
     </div>
+    <div class="container">
+      <single-input title="Replay" @value="get_replay"/>
+      <progress-button class="btn" :fill-color="sub_color" @click="sub_replay">{{sub_text}}</progress-button>
+    <p v-for="replay in art_replays" style="text-align:left;">
+    {{replay.context}}
+    </p>
+    </div>
 </div>
     
 </template>
 
 <script>
+import ProgressButton from "vue-progress-button";
 import InputTag from "@/components/input_tag";
 import SingleInput from "@/components/single_input";
 
 export default {
   data() {
     return {
+      base_address : "//127.0.0.1:12345/v1",
+      sub_text : "回复",
+      sub_color: "#66ccff",
+
       art_context: "",
       art_tags: [],
       art_title: "",
       art_author: "",
       art_next: "",
       art_prev: "",
+      art_replays:[],
+      art_replay:"",
       link_next: {},
       link_prev: {}
     };
   },
   components: {
+    "progress-button": ProgressButton,
     "input-tag": InputTag,
     "single-input": SingleInput
   },
   methods: {
-    fetch_data: function(address) {
+    fetch_article: function(address) {
       this.$http.get(address).then(
         res => {
           if (res.body.code == 1000) {
@@ -51,10 +66,9 @@ export default {
             this.art_tags = data.tags;
             this.art_title = data.title;
             this.art_author = data.author;
-            console.log(this.$route);
-            console.log(data.prev,data.next,"prev next")
-            if (data.prev != "") {
               this.art_prev = data.prev;
+              this.art_next = data.next;
+            if (data.prev != "") {
               this.link_prev = {
                 name: "get-article",
                 params: {
@@ -63,7 +77,6 @@ export default {
               };
             }
             if (data.next != "") {
-              this.art_next = data.next;
               this.link_next = {
                 name: "get-article",
                 params: {
@@ -78,10 +91,56 @@ export default {
         res => {}
       );
     },
+
+fetch_replays:function(address){
+  this.$http.get(address).then(
+    res=>{
+      if(res.body.code==1000){
+        let data=res.body.data;
+        console.log("replays : ",data);
+        this.art_replays=data.replays
+      }else{
+        console.log(res.body.msg);
+      }
+    },
+      res=>{
+
+      }
+  );
+},
+
+get_replay:function(s){
+  this.art_replay=s
+},
+sub_replay:function(){
+  console.log(this.art_replay)
+  this.$http.post(this.base_address+'/replay',{
+    title:this.art_title,
+    context:this.art_replay,
+  }).then(
+    res=>{
+      if(res.body.code==1000){
+        console.log("replay ok")
+        this.reload_replays()
+      }else{
+
+      }
+    },res=>{
+
+    }
+  )
+},
+
     reload(){
       console.log(this.$route.path);
-      let address = "//127.0.0.1:12345/v1";
-      this.fetch_data(address + this.$route.path);
+      this.reload_article()
+      this.reload_replays()
+    },
+    reload_article(){
+      this.fetch_article(this.base_address + this.$route.path);      
+    },
+    reload_replays(){
+      this.fetch_replays(this.base_address+this.$route.path.replace('article','replay'));
     }
   },
   mounted() {
