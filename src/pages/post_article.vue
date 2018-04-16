@@ -1,17 +1,19 @@
 <template>
 <div id="post_article">
 <div class="container">
-    
-    <single-input title="Title" @value="get_title"></single-input>
+  <single-input title="Title" @value="get_title"></single-input>
   <input-tag title="Tags" limit="4" :tags.sync="sub_tags"></input-tag>
 </div>
-  <mavon-editor v-model="sub_value"/>
+<toggle-button @change="enable_toolbar"/>
+<toggle-button @change="enable_preview"/>
+<toggle-button @change="enable_catalog"/>
+  <mavon-editor :toolbarsFlag="is_tool" :subfield="is_prew" :navigation="is_list" codeStyle="monokai"  v-model="sub_value"/>
   <progress-button class="btn" :fill-color="sub_color" @click="sub_act">{{sub_text}}</progress-button>
 </div>
 </template>
 
 <script>
-import Button from "vue-progress-button";
+import ProgressButton from "vue-progress-button";
 import InputTag from "@/components/input_tag";
 import SingleInput from "@/components/single_input";
 
@@ -21,6 +23,10 @@ export default {
       sub_text: "提交",
       sub_color: "#66ccff",
 
+      is_tool: false,
+      is_prew: true,
+      is_list: false,
+
       sub_title: "",
       sub_value: "",
       sub_tags: []
@@ -28,13 +34,22 @@ export default {
   },
 
   components: {
-    "progress-button": Button,
+    "progress-button": ProgressButton,
     "input-tag": InputTag,
     "single-input": SingleInput
   },
   methods: {
     get_title: function(s) {
       this.sub_title = s;
+    },
+    enable_toolbar: function() {
+      this.is_tool = !this.is_tool;
+    },
+    enable_preview: function() {
+      this.is_prew = !this.is_prew;
+    },
+    enable_catalog: function() {
+      this.is_list = !this.is_list;
     },
     sub_act: function() {
       let ads_prc = "//127.0.0.1:12345";
@@ -52,8 +67,8 @@ export default {
             console.log(res.body.msg);
             if (res.body.code == 1000) {
               console.log("ok -> jump to next");
-            }else{
-                console.log(res.body.msg)
+            } else {
+              console.log(res.body.msg);
             }
           },
           res => {
@@ -66,17 +81,19 @@ export default {
 </script>
 
 <style scoped>
+progress-button {
+  margin-top: 10vw;
+}
+</style>
+
+<style>
 .container {
   font-family: "Roboto";
   width: 100%;
   margin: 0;
   display: block;
   background: #fff;
-  padding-bottom:25px;
-}
-
-progress-button {
-  margin-top: 10vw;
+  padding-bottom: 25px;
 }
 </style>
 
@@ -90,7 +107,7 @@ progress-button {
   line-height: 35px;
   margin: auto;
 
-  margin-top:25px;
+  margin-top: 25px;
   max-width: 100px;
   position: relative;
   text-decoration: none;

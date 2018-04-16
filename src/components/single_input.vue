@@ -1,11 +1,16 @@
 <template>
   <div class="group">
-      <input type="text" required v-model="value">
+      <input type="text" required v-model="value" :class="{'read-only': readOnly}" >
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>{{title}}</label>
     </div>
 </template>
+<style scoped>
+input.read-only {
+  cursor: default;
+}
+</style>
 
 <script>
 export default {
@@ -17,6 +22,14 @@ export default {
   props: {
     title: {
       type: String
+    },
+    readOnly:{
+      type:Boolean,
+      default:false
+    },
+    setValue:{
+      type:String,
+      default:""
     }
   },
   methods: {
@@ -24,14 +37,14 @@ export default {
     //     console.log(this.$el.firstChild.textContent)
     // },
   },
-  // mounted(){
-  //     this.renders()
-  // }
   watch: {
     value: function() {
       this.$emit("value", this.value);
-    }
-  }
+    },
+    setValue:function(o){
+      this.value=o
+    },
+  },
 };
 </script>
 

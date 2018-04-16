@@ -11,6 +11,7 @@ Vue.use(resource)
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     // {
     //   path: '/',
@@ -23,7 +24,7 @@ export default new Router({
       component:post_article
     },
     {
-      path:'/test',
+      path:'/article/:title',
       name:'get-article',
       component:get_article
     }
