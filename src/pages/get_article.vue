@@ -30,12 +30,13 @@
 import ProgressButton from "vue-progress-button";
 import InputTag from "@/components/input_tag";
 import SingleInput from "@/components/single_input";
+import GlobalData from "@/components/global"
 
 export default {
   data() {
     return {
-      base_address : "//127.0.0.1:12345/v1",
-      sub_text : "回复",
+      base_address: GlobalData.inter,
+      sub_text: "回复",
       sub_color: "#66ccff",
 
       art_context: "",
@@ -44,8 +45,8 @@ export default {
       art_author: "",
       art_next: "",
       art_prev: "",
-      art_replays:[],
-      art_replay:"",
+      art_replays: [],
+      art_replay: "",
       link_next: {},
       link_prev: {}
     };
@@ -66,8 +67,8 @@ export default {
             this.art_tags = data.tags;
             this.art_title = data.title;
             this.art_author = data.author;
-              this.art_prev = data.prev;
-              this.art_next = data.next;
+            this.art_prev = data.prev;
+            this.art_next = data.next;
             if (data.prev != "") {
               this.link_prev = {
                 name: "get-article",
@@ -92,64 +93,64 @@ export default {
       );
     },
 
-fetch_replays:function(address){
-  this.$http.get(address).then(
-    res=>{
-      if(res.body.code==1000){
-        let data=res.body.data;
-        console.log("replays : ",data);
-        this.art_replays=data.replays
-      }else{
-        console.log(res.body.msg);
-      }
+    fetch_replays: function(address) {
+      this.$http.get(address).then(
+        res => {
+          if (res.body.code == 1000) {
+            let data = res.body.data;
+            console.log("replays : ", data);
+            this.art_replays = data.replays;
+          } else {
+            console.log(res.body.msg);
+          }
+        },
+        res => {}
+      );
     },
-      res=>{
 
-      }
-  );
-},
+    get_replay: function(s) {
+      this.art_replay = s;
+    },
+    sub_replay: function() {
+      console.log(this.art_replay);
+      this.$http
+        .post(this.base_address + "/replay", {
+          title: this.art_title,
+          context: this.art_replay
+        })
+        .then(
+          res => {
+            if (res.body.code == 1000) {
+              console.log("replay ok");
+              this.reload_replays();
+            } else {
+            }
+          },
+          res => {}
+        );
+    },
 
-get_replay:function(s){
-  this.art_replay=s
-},
-sub_replay:function(){
-  console.log(this.art_replay)
-  this.$http.post(this.base_address+'/replay',{
-    title:this.art_title,
-    context:this.art_replay,
-  }).then(
-    res=>{
-      if(res.body.code==1000){
-        console.log("replay ok")
-        this.reload_replays()
-      }else{
-
-      }
-    },res=>{
-
-    }
-  )
-},
-
-    reload(){
+    reload() {
       console.log(this.$route.path);
-      this.reload_article()
-      this.reload_replays()
+      this.reload_article();
+      this.reload_replays();
     },
-    reload_article(){
-      this.fetch_article(this.base_address + this.$route.path);      
+    reload_article() {
+      this.fetch_article(this.base_address + this.$route.path);
     },
-    reload_replays(){
-      this.fetch_replays(this.base_address+this.$route.path.replace('article','replay'));
+    reload_replays() {
+      this.fetch_replays(
+        this.base_address + this.$route.path.replace("article", "replay")
+      );
     }
   },
   mounted() {
-     this.reload()
+    this.reload();
   },
   watch: {
     // 如果路由有变化，会再次执行该方法
-    '$route': 'reload'
-  },
+    $route: "reload"
+  }
 };
 </script>
 
