@@ -16,7 +16,7 @@
 import ProgressButton from "vue-progress-button";
 import InputTag from "@/components/input_tag";
 import SingleInput from "@/components/single_input";
-import GlobalData from "@/cimponents/global"
+import GlobalData from "@/components/global"
 export default {
   data() {
     return {
