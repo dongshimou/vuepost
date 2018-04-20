@@ -7,7 +7,7 @@
     <hr/>    
 
     <div id="a_body">
-    <label for="">{{article.context}}</label>
+    <p id="a_context" for="">{{article.context}}</p>
     </div>
     <hr/>
     
@@ -29,7 +29,8 @@ export default {
   },
   props: {
     article: Object
-  }
+  },
+  created() {}
 };
 </script>
 
@@ -39,8 +40,8 @@ export default {
 <style scoped>
 #a_total {
   padding: 10px 15px;
-  background-color:rgba(160,160,160,0.15);
-  padding-bottom:40px;
+  background-color: rgba(160, 160, 160, 0.15);
+  padding-bottom: 40px;
 }
 #a_head {
   height: 40px;
@@ -51,8 +52,17 @@ export default {
 }
 #a_title {
   float: left;
+  color: #000000;
+  word-break: break-all;
+}
+#a_context {
+  text-indent: 2em;
+  text-align: left;
+  color: #999;
+  word-break: break-word;
 }
 #a_time {
   float: right;
+  color: #ff7e7ef0;
 }
 </style>

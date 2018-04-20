@@ -6,14 +6,22 @@ import router from './router'
 
 import mavonEditor from 'mavon-editor'
 import ToggleButton from 'vue-js-toggle-button';
-import VueImg from 'v-img';
+// import VueImg from 'v-img';
+// Vue.use(VueImg)
+
+// import RouterNav from 'vue-router-nav'
+// Vue.use(RouterNav)
+
+// import LoadMore from 'vue-scroll-loadmore'
+// Vue.use(LoadMore)
+
+// import Pin from 'vue-pin'
+// Vue.use(Pin)
 
 import 'mavon-editor/dist/css/index.css'
 import './assets/animate.min.css'
 import './assets/icons.css'
 // import 'font-awesome/css/font-awesome.min.css'
-
-Vue.use(VueImg);
 
 Vue.use(ToggleButton)
 Vue.use(mavonEditor)

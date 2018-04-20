@@ -71,7 +71,7 @@ export default {
             this.art_next = data.next;
             if (data.prev != "") {
               this.link_prev = {
-                name: "get-article",
+                name: "get_article",
                 params: {
                   title: data.prev
                 }
@@ -79,7 +79,7 @@ export default {
             }
             if (data.next != "") {
               this.link_next = {
-                name: "get-article",
+                name: "get_article",
                 params: {
                   title: data.next
                 }

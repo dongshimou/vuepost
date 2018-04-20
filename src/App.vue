@@ -1,8 +1,10 @@
 <template>
   <div id="app" class="flexRowBox">
-    <!-- <img src="./assets/logo.png"> -->
-    <div id="home-nav" class="flexRowBox flexRowCenter">
-    <home-nav/>
+    <!-- <router-nav/>     -->
+    <div id="home-nav" class="flexRowBox">
+      <div id="nav-fix">
+    <home-nav />
+      </div>
     </div>
     <div id="home-context">
       <router-view />
@@ -17,6 +19,17 @@ export default {
   name: "App",
   components: {
     "home-nav": HomeNav
+  },
+  props: {
+    is_pin: Boolean,
+    default: true
+  },
+  methods: {
+    test: function() {
+    }
+  },
+  mounted() {
+    // window.addEventListener("resize", this.test);
   }
 };
 </script>
@@ -40,33 +53,56 @@ export default {
   margin-top: 60px;
   /* background: url("/static/back.jpg"); */
 }
+ul {
+  -webkit-padding-start: 0px;
+}
 </style>
 
 <style lang="scss" scoped>
-#home-nav {
-  @media (max-width: 200px) {
+@media screen and (max-width: 480px) and (max-width: 720px) {
+  #home-nav {
     width: 100%;
-    margin: auto;
+    margin: 0;
   }
-  @media (min-width: 200px) {
-    width: 200px;
+  #home-context {
+    width: 100%;
     margin: 0;
   }
 }
-#home-context {
-  @media (min-width: 400px) {
+@media screen and (min-width: 720px) and (max-width: 960px) {
+  #home-nav {
     width: 100%;
+    margin: 0;
+  }
+  #home-context {
+    width: 720px;
     margin: auto;
   }
-  @media (min-width: 680px) {
-    width: 600px;
+}
+@media screen and (min-width: 960px) and (max-width: 1280px) {
+  #home-nav {
+    width: 10%;
+    margin: auto;
+    margin-top: 0;
+  }
+  #nav-fix{
+    position: fixed;
+  }
+  #home-context {
+    width: 70%;
     margin: auto;
   }
-  @media (min-width: 720px) {
-    width: 700px;
-    margin: auto;
+}
+@media screen and (min-width: 1280px) {
+  #home-nav {
+    width: 200px;
+    margin: 0;
+    margin-left: auto;
   }
-  @media (min-width: 1280px) {
+  #nav-fix{
+    position: fixed;
+  }
+  #home-context {
     width: 1000px;
     margin: auto;
   }

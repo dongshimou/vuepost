@@ -1,10 +1,15 @@
 <template>
-  <div class="">
+  <div >
       <div class="flexRowBox">
-      <avatar username="Jane Doe"
-      src="/static/avatar.gif"></avatar>
+        <a href="https://github.com/yanthems">
+      <avatar 
+      username="Yanthems"
+      :size="100"      
+      src="/static/avatar.gif">
+      </avatar>
+        </a>
       </div>
-      <p>这是我</p>
+      <p>Yanthems</p>
       <Twitter
       title_social="Share"
       :page_title="title"
@@ -17,28 +22,28 @@
 </template>
 
 <script>
-import Avatar from 'vue-avatar'
-import VueGoodshareTwitter from 'vue-goodshare/src/providers/Twitter'
+import Avatar from "vue-avatar";
+import VueGoodshareTwitter from "vue-goodshare/src/providers/Twitter";
 export default {
-components: {
+  components: {
     Avatar,
-    "Twitter":VueGoodshareTwitter
+    Twitter: VueGoodshareTwitter
   },
-    data(){
-        return{
-            title:"我喜欢这个!"
-        }
-    },
-  mounted(){
+  data() {
+    return {
+      title: "我喜欢这个!"
+    };
+  },
+  computed: {
+  },
+  mounted() {
   }
-}
+};
 </script>
 
 <style>
 
 </style>
 <style scoped>
-
-
 
 </style>

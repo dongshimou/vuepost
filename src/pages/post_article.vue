@@ -38,6 +38,8 @@ export default {
     "input-tag": InputTag,
     "single-input": SingleInput
   },
+  created(){
+  },
   methods: {
     get_title: function(s) {
       this.sub_title = s;
@@ -70,6 +72,12 @@ export default {
             } else {
               console.log(res.body.msg);
             }
+            this.$router.push({
+              name:"get_article",
+              params:{
+                title:this.sub_title
+              }
+            })
           },
           res => {
             console.log(res.body.msg);

@@ -24,7 +24,7 @@ export default new Router({
     },
     {
       path:'/article/:title',
-      name:'get-article',
+      name:'get_article',
       component:get_article
     },
 
