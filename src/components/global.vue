@@ -1,6 +1,6 @@
 <script>
-const host="test.fuckneusoft.com";
-const inter="//127.0.0.1:12345/v1";
+const host="http://fuckneusoft.com";
+const inter="http://interface.fuckneusoft.com/v1";
   export default
   {
     host,

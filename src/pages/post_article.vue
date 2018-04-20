@@ -16,7 +16,7 @@
 import ProgressButton from "vue-progress-button";
 import InputTag from "@/components/input_tag";
 import SingleInput from "@/components/single_input";
-
+import GlobalData from "@/cimponents/global"
 export default {
   data() {
     return {
@@ -52,12 +52,12 @@ export default {
       this.is_list = !this.is_list;
     },
     sub_act: function() {
-      let ads_prc = "//127.0.0.1:12345";
+      let ads_prc = GlobalData.inter;
       console.log("title = ", this.sub_title);
       console.log("context = ", this.sub_value);
       console.log("tags = ", this.sub_tags);
       this.$http
-        .post(ads_prc + "/v1/article", {
+        .post(ads_prc + "/article", {
           title: this.sub_title,
           context: this.sub_value,
           tags: this.sub_tags
