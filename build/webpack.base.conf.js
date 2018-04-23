@@ -57,6 +57,16 @@ module.exports = {
           name: utils.assetsPath('media/[name].[hash:7].[ext]')
         }
       },
+      // {
+      //   test: /\.css$/,
+      //   use: [{
+      //     loader: "style-loader" // creates style nodes from JS strings
+      //     }, {
+      //     loader: "css-loader" // translates CSS into CommonJS
+      //     }, {
+      //     loader: "less-loader" // compiles Less to CSS
+      //    }]
+      // },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',

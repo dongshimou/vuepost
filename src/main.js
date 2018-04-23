@@ -19,8 +19,8 @@ import ToggleButton from 'vue-js-toggle-button';
 // Vue.use(Pin)
 
 import 'mavon-editor/dist/css/index.css'
-import './assets/animate.min.css'
-import './assets/icons.css'
+// import './assets/animate.min.css'
+// import './assets/icons.css'
 // import 'font-awesome/css/font-awesome.min.css'
 
 Vue.use(ToggleButton)
@@ -34,3 +34,5 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
