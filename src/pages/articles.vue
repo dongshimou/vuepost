@@ -121,8 +121,8 @@ export default {
     },
     scrollLoad: function() {
       if (
-        this.getScrollTop() + this.getWindowHeight() ==
-        this.getScrollHeight()
+        this.getScrollTop() + this.getWindowHeight() >=
+        this.getScrollHeight()*0.9
       ) {
         if (!this.start_load) {
           console.log("scrollLoad");
