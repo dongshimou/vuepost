@@ -68,7 +68,7 @@ export default {
                 time: data[i].create_datetime,
                 tags: data[i].tags
               });
-              this.time = new Date(data[i].create_datetime);
+              this.time = new Date(data[i].create_datetime)
             }
             console.log(this.time.toLocaleString());
             this.start_load = false;

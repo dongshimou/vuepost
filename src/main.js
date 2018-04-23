@@ -26,6 +26,9 @@ Vue.use(ToggleButton)
 Vue.use(mavonEditor)
 Vue.config.productionTip = false
 
+import Moment from 'moment'
+Vue.prototype.moment = Moment
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -2,7 +2,7 @@
 <div id="a_total">
     <div id="a_head">
     <label id="a_title">{{article.title}}</label>
-    <label id="a_time">{{article.time}}</label>
+    <label id="a_time">{{moment(article.time).fromNow()}}</label>
     </div>
     <hr/>    
 
@@ -19,10 +19,11 @@
 
 <script>
 import ArticleTags from "@/components/article_tags";
+
 export default {
   name: "single_article",
   components: {
-    "article-tags": ArticleTags
+    "article-tags": ArticleTags,
   },
   data() {
     return {};
@@ -30,7 +31,9 @@ export default {
   props: {
     article: Object
   },
-  created() {}
+  created() {
+
+  }
 };
 </script>
 
