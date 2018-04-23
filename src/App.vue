@@ -32,7 +32,7 @@ export default {
     // window.addEventListener("resize", this.test);
   }
 };
-</script>
+</script>git
 <style lang="scss">
 @import './assets/animate.min.css';
 @import './assets/icons.css';
