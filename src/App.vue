@@ -25,8 +25,7 @@ export default {
     default: true
   },
   methods: {
-    test: function() {
-    }
+    test: function() {}
   },
   mounted() {
     // window.addEventListener("resize", this.test);
@@ -34,8 +33,31 @@ export default {
 };
 </script>git
 <style lang="scss">
-@import './assets/animate.min.css';
-@import './assets/icons.css';
+@import "./assets/animate.min.css";
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v36/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2)
+    format("woff2");
+  /* src: url(/static/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2'); */
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
 </style>
 <style>
 .flexRowBox {
@@ -88,7 +110,7 @@ ul {
     margin: auto;
     margin-top: 0;
   }
-  #nav-fix{
+  #nav-fix {
     position: fixed;
   }
   #home-context {
@@ -102,7 +124,7 @@ ul {
     margin: 0;
     margin-left: auto;
   }
-  #nav-fix{
+  #nav-fix {
     position: fixed;
   }
   #home-context {
