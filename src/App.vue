@@ -35,7 +35,7 @@ export default {
 </script>
 <style lang="scss">
 @import './assets/animate.min.css';
-@import url('./assets/icons.css');
+@import './assets/icons.css';
 </style>
 <style>
 .flexRowBox {
