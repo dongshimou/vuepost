@@ -32,8 +32,9 @@ export default {
   data() {
     return {
       articles: [],
+      start_load: false,
       time: new Date(),
-      size: 5
+      size: 10
     };
   },
   methods: {
@@ -47,10 +48,13 @@ export default {
     },
     reloadData: function() {
       let address = GlobalData.inter + "/article";
+      this.start_load = true;
+      let tstr=this.time.getTime().toString()
+      let t=tstr.substring(0,tstr.length-3)
       this.$http
         .get(address, {
           params: {
-            time: this.time.getTime(),
+            time: t,
             size: this.size
           }
         })
@@ -64,10 +68,14 @@ export default {
                 time: data[i].create_datetime,
                 tags: data[i].tags
               });
-              this.time=new Date(data[i].create_datetime);
+              this.time = new Date(data[i].create_datetime);
             }
+            console.log(this.time.toLocaleString());
+            this.start_load = false;
           },
-          res => {}
+          res => {
+            this.start_load = false;
+          }
         );
     },
     getScrollTop: function() {
@@ -116,12 +124,14 @@ export default {
         this.getScrollTop() + this.getWindowHeight() ==
         this.getScrollHeight()
       ) {
-        console.log("scrollLoad")
-        this.reloadData();
+        if (!this.start_load) {
+          console.log("scrollLoad");
+          this.reloadData();
+        }
       }
     },
-    loadmore:function(){
-      console.log("loadmore")
+    loadmore: function() {
+      console.log("loadmore");
       this.reloadData();
     }
   },
