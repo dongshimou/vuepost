@@ -33,31 +33,30 @@ export default {
 };
 </script>git
 <style lang="scss">
-@import "./assets/animate.min.css";
-@font-face {
-  font-family: "Material Icons";
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialicons/v36/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2)
-    format("woff2");
-  /* src: url(/static/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2'); */
-}
+// @import "./assets/animate.min.css";
+// @font-face {
+//   font-family: "Material Icons";
+//   font-style: normal;
+//   font-weight: 400;
+//   src: url(https://fonts.gstatic.com/s/materialicons/v36/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2)
+//     format("woff2");
+// }
 
-.material-icons {
-  font-family: "Material Icons";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
-}
+// .material-icons {
+//   font-family: "Material Icons";
+//   font-weight: normal;
+//   font-style: normal;
+//   font-size: 24px;
+//   line-height: 1;
+//   letter-spacing: normal;
+//   text-transform: none;
+//   display: inline-block;
+//   white-space: nowrap;
+//   word-wrap: normal;
+//   direction: ltr;
+//   -webkit-font-feature-settings: "liga";
+//   -webkit-font-smoothing: antialiased;
+// }
 </style>
 <style>
 .flexRowBox {
@@ -65,6 +64,10 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+.flexRowBoxLeft{
+  text-align: left;
+  justify-content: flex-start;
 }
 .flexRowCenter {
   align-items: center;
@@ -84,14 +87,24 @@ ul {
 </style>
 
 <style lang="scss" scoped>
-@media screen and (max-width: 480px) and (max-width: 720px) {
-  #home-nav {
-    width: 100%;
+@media screen and (max-width: 480px) {
+  #home-nav{
+    width:100%;
     margin: 0;
   }
   #home-context {
     width: 100%;
     margin: 0;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 720px) {
+  #home-nav {
+    width: 100%;
+    margin: 0;
+  }
+  #home-context {
+    width: 96%;
+    margin: 4%;
   }
 }
 @media screen and (min-width: 720px) and (max-width: 960px) {

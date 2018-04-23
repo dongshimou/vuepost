@@ -4,10 +4,18 @@
   <single-input title="Title" @value="get_title"></single-input>
   <input-tag title="Tags" limit="4" :tags.sync="sub_tags"></input-tag>
 </div>
-<toggle-button @change="enable_toolbar"/>
-<toggle-button @change="enable_preview"/>
-<toggle-button @change="enable_catalog"/>
-  <mavon-editor :toolbarsFlag="is_tool" :subfield="is_prew" :navigation="is_list" codeStyle="monokai"  v-model="sub_value"/>
+<div class="container  flexRowBox">
+  <label>工具栏</label>
+<toggle-button :sync="true" :value="is_tool" @change="enable_toolbar"/>
+  <label>多窗口</label>
+<toggle-button :sync="true" :value="is_prew" @change="enable_preview"/>
+
+<label>预览</label>
+<toggle-button :sync="true" :value="is_multi" @change="enable_multi"/>
+  <label>编辑</label>
+<toggle-button :sync="true" :value="is_edit" @change="enable_catalog"/>
+</div>
+  <mavon-editor :toolbarsFlag="is_tool" :subfield="is_prew" :editable="is_edit" codeStyle="monokai" :defaultOpen="edit_prew" v-model="sub_value"/>
   <progress-button class="btn" :fill-color="sub_color" @click="sub_act">{{sub_text}}</progress-button>
 </div>
 </template>
@@ -16,7 +24,7 @@
 import ProgressButton from "vue-progress-button";
 import InputTag from "@/components/input_tag";
 import SingleInput from "@/components/single_input";
-import GlobalData from "@/components/global"
+import GlobalData from "@/components/global";
 export default {
   data() {
     return {
@@ -25,7 +33,10 @@ export default {
 
       is_tool: false,
       is_prew: true,
-      is_list: false,
+      is_edit: true,
+      edit_prew: "preview",
+
+      is_multi: true,
 
       sub_title: "",
       sub_value: "",
@@ -38,20 +49,35 @@ export default {
     "input-tag": InputTag,
     "single-input": SingleInput
   },
-  created(){
-  },
+  created() {},
   methods: {
     get_title: function(s) {
       this.sub_title = s;
+    },
+    enable_multi: function() {
+      this.is_multi = !this.is_multi;
+      console.log(this.is_multi);
+      if (this.is_multi) {
+        this.is_prew = false;
+        this.edit_prew = "preview";
+      } else {
+        this.is_prew = false;
+        this.edit_prew = "edit";
+      }
     },
     enable_toolbar: function() {
       this.is_tool = !this.is_tool;
     },
     enable_preview: function() {
       this.is_prew = !this.is_prew;
+      if (this.is_prew) {
+        this.edit_prew = "preview";
+      } else {
+        this.edit_prew = "edit";
+      }
     },
     enable_catalog: function() {
-      this.is_list = !this.is_list;
+      this.is_edit = !this.is_edit;
     },
     sub_act: function() {
       let ads_prc = GlobalData.inter;
@@ -73,11 +99,11 @@ export default {
               console.log(res.body.msg);
             }
             this.$router.push({
-              name:"get_article",
-              params:{
-                title:this.sub_title
+              name: "get_article",
+              params: {
+                title: this.sub_title
               }
-            })
+            });
           },
           res => {
             console.log(res.body.msg);
@@ -102,6 +128,8 @@ progress-button {
   display: block;
   background: #fff;
   padding-bottom: 25px;
+}
+.switchs {
 }
 </style>
 

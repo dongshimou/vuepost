@@ -2,7 +2,7 @@
 <template>
   <div @click="focusNewTag()" :class="{'read-only': readOnly}" class="vue-input-tag-wrapper group">
     <span v-for="(tag, index) in innerTags" :key="index" class="input-tag">
-      <span>{{ tag }}</span>
+      <span >{{ tag }}</span>
       <a v-if="!readOnly" @click.prevent.stop="remove(index)" class="remove"></a>
     </span>
     <input id="input" required
@@ -17,7 +17,7 @@
     />
       <span class="highlight"></span>
       <span class="bar"></span>
-    <label>{{title}}</label>
+    <label :class="{'read-only': readOnly}">{{title}}</label>
   </div>
 </template>
 
@@ -203,7 +203,9 @@ export default {
   display: flex;
   flex-wrap: wrap;
 } */
-
+label.read-only{
+  top:-30px;
+}
 .group {
   position: relative;
   margin-bottom: 40px;

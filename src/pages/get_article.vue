@@ -2,7 +2,7 @@
 <div id="get_article">
     <div class="container">
   <single-input title="Title" :readOnly="true" :setValue="art_title"></single-input>
-  <input-tag title="Tags" :readOnly="true" :tags.sync="art_tags"></input-tag>
+  <input-tag title="Tags" :readOnly="true" :tags.sync="art_tags" ></input-tag>
 </div>
     <mavon-editor :toolbarsFlag="false" :subfield="false"  defaultOpen="preview" codeStyle="monokai"  v-model="art_context"/>
     <div class="container">
