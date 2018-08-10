@@ -179,8 +179,7 @@ export default {
 
 <style>
 .article-nav-header {
-  padding-left: 3vw;
-  padding-right: 3vw;
+  padding: 0 3vw 0 3vw;
   display: flex;
   justify-content: space-between;
 }
