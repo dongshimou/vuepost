@@ -1,6 +1,6 @@
 <template>
   <div class="group">
-      <input type="text" required v-model="value" :class="{'read-only': readOnly}" >
+      <input type="text" required v-model="value" :class='{"read-only": readOnly}' >
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>{{title}}</label>
@@ -9,6 +9,11 @@
 <style scoped>
 input.read-only {
   cursor: default;
+}
+input.read-only ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
 }
 </style>
 
@@ -23,33 +28,42 @@ export default {
     title: {
       type: String
     },
-    readOnly:{
-      type:Boolean,
-      default:false
+    readOnly: {
+      type: Boolean,
+      default: false
     },
-    setValue:{
-      type:String,
-      default:""
+    setValue: {
+      type: String,
+      default: ""
     }
   },
   methods: {
     // renders:function(){
     //     console.log(this.$el.firstChild.textContent)
     // },
+    init_read_only: function() {
+      if (this.readOnly) {
+        this.$el.firstChild.setAttribute("disabled", "disabled");
+      } else {
+        this.$el.firstChild.removeAttribute("disabled");
+      }
+    }
   },
   watch: {
     value: function() {
       this.$emit("value", this.value);
     },
-    setValue:function(o){
-      this.value=o
-    },
+    setValue: function(o) {
+      this.value = o;
+    }
   },
+  mounted() {
+    this.init_read_only();
+  }
 };
 </script>
 
 <style>
-
 </style>
 
 <style scoped>
@@ -93,8 +107,8 @@ label {
 }
 
 /* active state */
-input:focus ~ label,
-input:valid ~ label {
+input:valid ~ label,
+input:focus ~ label {
   top: -20px;
   font-size: 14px;
   color: #5264ae;

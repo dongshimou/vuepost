@@ -56,7 +56,7 @@ ul{
 .article-tag::before,
 .article-category::before {
   float: left;
-  color: #999;
+  color:coral;
   font: 16px FontAwesome;
   margin-right: 5px;
   margin-top: 0.333333333333333rem;
