@@ -17,33 +17,35 @@
       has_icon
       ></Twitter>
       <a href="https://twitter.com/dongshimou">
-    <i class="pserson"></i></a>
+    <i class="pserson"></i>
+    </a>
+    <div>
+    <tags-ball/>
+    </div>
   </div>
 </template>
 
 <script>
 import Avatar from "vue-avatar";
 import VueGoodshareTwitter from "vue-goodshare/src/providers/Twitter";
+import TagsBall from "@/components/tags_ball";
 export default {
   components: {
     Avatar,
-    Twitter: VueGoodshareTwitter
+    Twitter: VueGoodshareTwitter,
+    "tags-ball":TagsBall
   },
   data() {
     return {
       title: "我喜欢这个!"
     };
   },
-  computed: {
-  },
-  mounted() {
-  }
+  computed: {},
+  mounted() {}
 };
 </script>
 
 <style>
-
 </style>
 <style scoped>
-
 </style>
