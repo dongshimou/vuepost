@@ -19,7 +19,7 @@ export default new Router({
     },
     {
       path:'/article',
-      name:'post_article',
+      name:'create_article',
       component:post_article
     },
     {
@@ -27,6 +27,11 @@ export default new Router({
       name:'get_article',
       component:get_article
     },
+    {
+      path:'/article/update/:title',
+      name:'update_article',
+      component:post_article
+    }
 
   ]
 })

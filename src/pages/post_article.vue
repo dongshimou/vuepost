@@ -1,8 +1,8 @@
 <template>
 <div id="post_article">
 <div class="container">
-  <single-input title="Title" @value="get_title"></single-input>
-  <input-tag title="Tags" limit="4" :tags.sync="sub_tags"></input-tag>
+  <single-input title="Title" @value="get_title" :setValue="art_title"></single-input>
+  <input-tag title="Tags" limit="4" :tags.sync="art_tags" ></input-tag>
 </div>
 <div class="container  flexRowBox">
   <label>工具栏</label>
@@ -15,7 +15,7 @@
   <label>编辑</label>
 <toggle-button :sync="true" :value="is_edit" @change="enable_catalog"/>
 </div>
-  <mavon-editor :toolbarsFlag="is_tool" :subfield="is_prew" :editable="is_edit" codeStyle="monokai" :defaultOpen="edit_prew" v-model="sub_value"/>
+  <mavon-editor :toolbarsFlag="is_tool" :subfield="is_prew" :editable="is_edit" codeStyle="monokai" :defaultOpen="edit_prew" v-model="art_context"/>
   <progress-button class="btn" :fill-color="sub_color" @click="sub_act">{{sub_text}}</progress-button>
 </div>
 </template>
@@ -28,6 +28,7 @@ import GlobalData from "@/components/global";
 export default {
   data() {
     return {
+      base_address:GlobalData.inter,
       sub_text: "提交",
       sub_color: "#66ccff",
 
@@ -38,9 +39,12 @@ export default {
 
       is_multi: true,
 
-      sub_title: "",
-      sub_value: "",
-      sub_tags: []
+      art_context: "",
+      art_tags: [],
+      art_title: "",
+      art_author: "",
+
+      page_status:"create"
     };
   },
 
@@ -49,10 +53,55 @@ export default {
     "input-tag": InputTag,
     "single-input": SingleInput
   },
-  created() {},
+  mounted() {
+    if (this.$route.name=="update_article"){
+      this.fetch_article(this.base_address+'/article/'+this.$route.params.title)
+      this.page_status="update"
+    }else if (this.$route.name=="create_article"){
+
+    }
+  },
+  watch: {
+    // 如果路由有变化，会再次执行该方法
+    $route: "reload"
+  },
   methods: {
+    fetch_article: function(address) {
+      this.$http.get(address).then(
+        res => {
+          if (res.body.code == 1000) {
+            let data = res.body.data;
+            this.art_context = data.context;
+            this.art_tags = data.tags;
+            this.art_title = data.title;
+            this.art_author = data.author;
+            // this.art_prev = data.prev;
+            // this.art_next = data.next;
+            // if (data.prev != "") {
+            //   this.link_prev = {
+            //     name: "get_article",
+            //     params: {
+            //       title: data.prev
+            //     }
+            //   };
+            // }
+            // if (data.next != "") {
+            //   this.link_next = {
+            //     name: "get_article",
+            //     params: {
+            //       title: data.next
+            //     }
+            //   };
+            // }
+          } else {
+            console.log(res.body.msg);
+          }
+        },
+        res => {}
+      );
+    },
     get_title: function(s) {
-      this.sub_title = s;
+      this.art_title = s;
     },
     enable_multi: function() {
       this.is_multi = !this.is_multi;
@@ -80,19 +129,19 @@ export default {
       this.is_edit = !this.is_edit;
     },
     sub_act: function() {
-      let ads_prc = GlobalData.inter;
-      console.log("title = ", this.sub_title);
-      console.log("context = ", this.sub_value);
-      console.log("tags = ", this.sub_tags);
-      this.$http
-        .post(ads_prc + "/article", {
-          title: this.sub_title,
-          context: this.sub_value,
-          tags: this.sub_tags
+      let path_address=""
+      if (this.page_status=="create"){
+        path_address="/article"
+      }else if (this.page_status=="update"){
+        path_address="/article/update/"+this.art_title
+      }
+      this.$http.post(this.base_address + path_address, {
+          title: this.art_title,
+          context: this.art_context,
+          tags: this.art_tags
         })
         .then(
           res => {
-            console.log(res.body.msg);
             if (res.body.code == 1000) {
               console.log("ok -> jump to next");
             } else {
@@ -101,7 +150,7 @@ export default {
             this.$router.push({
               name: "get_article",
               params: {
-                title: this.sub_title
+                title: this.art_title
               }
             });
           },
