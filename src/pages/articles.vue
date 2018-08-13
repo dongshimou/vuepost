@@ -34,7 +34,8 @@ export default {
       articles: [],
       start_load: false,
       time: new Date(),
-      size: 10
+      size: 10,
+      on_load_pos:0,
     };
   },
   methods: {
@@ -70,7 +71,7 @@ export default {
               });
               this.time = new Date(data[i].create_datetime)
             }
-            console.log(this.time.toLocaleString());
+            console.log("load time:",this.time.toLocaleString());
             this.start_load = false;
           },
           res => {
@@ -120,13 +121,14 @@ export default {
       return windowHeight;
     },
     scrollLoad: function() {
-      if (
-        this.getScrollTop() + this.getWindowHeight() >=
-        this.getScrollHeight()*0.9
-      ) {
+        let now_scroll=this.getScrollTop() + this.getWindowHeight()
+        let total_scroll=this.getScrollHeight()
+      if (now_scroll >=total_scroll*0.9) {
         if (!this.start_load) {
-          console.log("scrollLoad");
+          if(this.on_load_pos<total_scroll){
+          this.on_load_pos=total_scroll
           this.reloadData();
+          }
         }
       }
     },
