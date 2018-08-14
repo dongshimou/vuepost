@@ -20,7 +20,7 @@
     <i class="pserson"></i>
     </a>
     <div>
-    <tags-ball/>
+    <tags-ball :tags="tags"/>
     </div>
   </div>
 </template>
@@ -29,6 +29,8 @@
 import Avatar from "vue-avatar";
 import VueGoodshareTwitter from "vue-goodshare/src/providers/Twitter";
 import TagsBall from "@/components/tags_ball";
+import GlobalData from "@/components/global";
+
 export default {
   components: {
     Avatar,
@@ -37,11 +39,31 @@ export default {
   },
   data() {
     return {
-      title: "我喜欢这个!"
+      title: "我喜欢这个!",
+      tags:[]
     };
   },
+  methods:{
+    fetch_tags: function() {
+      let address=GlobalData.inter+'/tags'
+      this.$http.get(address).then(
+        res => {
+          if (res.body.code == 1000) {
+            let data = res.body.data;
+            console.log("tags:",data)
+            this.tags=data.names
+          }
+        },
+        res => {
+          console.log(res.body);
+        }
+      );
+    },
+  },
   computed: {},
-  mounted() {}
+  mounted() {
+    this.fetch_tags()
+  }
 };
 </script>
 
