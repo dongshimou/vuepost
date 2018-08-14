@@ -106,7 +106,6 @@ export default {
             this.max
           );
           ctx.restore();
-          console.log(this.x*this.x+this.y*this.y+this.z*this.z)
         }
       };
 

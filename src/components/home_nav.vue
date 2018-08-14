@@ -50,7 +50,6 @@ export default {
         res => {
           if (res.body.code == 1000) {
             let data = res.body.data;
-            console.log("tags:",data)
             this.tags=data.names
           }
         },
