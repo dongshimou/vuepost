@@ -20,7 +20,7 @@
     <i class="pserson"></i>
     </a>
     <div>
-    <tags-ball :tags="tags"/>
+    <tags-ball  :tags="tags"/>
     </div>
   </div>
 </template>
@@ -44,6 +44,10 @@ export default {
     };
   },
   methods:{
+    stop_it:function(){
+      this.stop=!this.stop
+      console.log("status=",this.stop)
+    },
     fetch_tags: function() {
       let address=GlobalData.inter+'/tags'
       this.$http.get(address).then(
