@@ -87,6 +87,7 @@ input {
   display: block;
   width: 100%;
   border: none;
+  background-color:rgba(0,0,0,1);
 }
 input:focus {
   outline: none;
