@@ -65,6 +65,8 @@ export default {
     init_ball: function() {
       let canvas = this.$el;
       let tags = this.tags;
+      console.log(tags)
+      
       let Radius = this.radius;
       let fontMax=this.fontMax
       let color=Color(this.color)

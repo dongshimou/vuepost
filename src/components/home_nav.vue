@@ -20,7 +20,7 @@
     <i class="pserson"></i>
     </a>
     <div>
-    <tags-ball :tags="tags"/>
+    <tags-ball :style="{'background-color':'#eeeeee'}" :tags="tags"/>
     </div>
   </div>
 </template>
