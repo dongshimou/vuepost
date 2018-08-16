@@ -20,7 +20,7 @@
     <i class="pserson"></i>
     </a>
     <div>
-    <tags-ball  :tags="tags"/>
+    <tags-ball :tags="tags"/>
     </div>
   </div>
 </template>

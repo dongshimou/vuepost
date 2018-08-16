@@ -1,20 +1,18 @@
 <template>
   <canvas :width="width" :height="height" id="tags_ball">
-  这里是用来测试canvas的
+  您的浏览器暂时不支持canvas
 </canvas>
 </template>
 
 <style scoped>
 #tags_ball {
-  background-color: #dddddd;
-  /* margin-top: 3vh; */
   border-radius: 20px;
-  /* border: 2px solid #8AC007; */
-  border: 2px solid #bc8f8f;
+  border: 2px solid #66ccff;
 }
 </style>
 
 <script>
+var Color = require('color');
 let Animation = function() {
   this.running = true;
 };
@@ -50,9 +48,17 @@ export default {
       type: Number,
       default: 100
     },
+    fontMax:{
+      type:Number,
+      default:60
+    },
     font: {
       type: String,
       default: "24px monaco"
+    },
+    color:{
+      tupe:String,
+      default:"#fc8457"
     }
   },
   methods: {
@@ -60,22 +66,24 @@ export default {
       let canvas = this.$el;
       let tags = this.tags;
       let Radius = this.radius;
+      let fontMax=this.fontMax
+      let color=Color(this.color)
       let ctx = canvas.getContext("2d");
       ctx.font = this.font;
 
       let angleX = Math.PI / 100 / 2;
       let angleY = Math.PI / 100 / 2;
 
-      let vpx = canvas.width / 2;
-      let vpy = canvas.height / 2;
+      const hx = canvas.width / 2;
+      const hy = canvas.height / 2;
 
       let count = tags.length;
       if (count == 0) {
         return;
       }
-      this.$el.addEventListener("mousemove", function(event) {
-        let x = event.layerX - vpx;
-        let y = event.layerY - vpy;
+      canvas.addEventListener("mousemove", function(event) {
+        let x = event.layerX - hx;
+        let y = event.layerY - hy;
         // console.log("x y =",x,y)
         angleY = -x * 0.0001;
         angleX = -y * 0.0001;
@@ -88,12 +96,7 @@ export default {
         this.z = z;
       };
       function create() {
-        // let R2 = Math.pow(Radius, 2);
-        // let lati = Radius * 4 / Math.sqrt(count);
-        // let la2 = Math.pow(lati, 2);
-        //角度
-        // let latitude = Math.acos(Math.sqrt(1 - 8.0 / count));
-        let alpha = Math.sqrt(1 - 8.0 / (count + 5));
+        let alpha = Math.sqrt(1 - 8.0 / (count + 3));
         function getm(a) {
           return Math.sqrt(
             Math.pow(a.x, 2) + Math.pow(a.y, 2) + Math.pow(a.z, 2)
@@ -102,7 +105,6 @@ export default {
 
         function getv3cos(a, b) {
           let t1 = a.x * b.x + a.y * b.y + a.z * b.z;
-
           let t2 = getm(a) * getm(b);
           return t1 / t2;
         }
@@ -136,6 +138,7 @@ export default {
             if (points.length == 0) {
               points.push(v);
             }
+            // console.log(points.length)
             let success = true;
             for (let i = 0; i < points.length; i++) {
               if (getv3cos(v, points[i]) > alpha) {
@@ -151,8 +154,8 @@ export default {
       }
       create();
 
-      let circles = [];
-      let circle = function(x, y, z, str, width, max) {
+      let labels = [];
+      let label = function(x, y, z, str, width, max) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -162,65 +165,65 @@ export default {
         this.max = max;
       };
 
-      circle.prototype = {
+      label.prototype = {
         paint: function() {
           ctx.save();
           let alpha = (this.z + Radius) / (2 * Radius);
-          ctx.fillStyle = "rgba(255,132,87," + (alpha + 0.5) + ")";
+          // ctx.fillStyle = "rgba("+color+ (alpha + 0.5) + ")";
+          ctx.fillStyle=color.alpha(alpha+0.5).toString()
           ctx.fillText(
             this.str,
-            vpx + this.x - Math.min(this.max, this.width) / 2,
-            vpy + this.y,
+            hx + this.x - Math.min(this.max, this.width) / 2,
+            hy + this.y,
             this.max
           );
           ctx.restore();
         }
       };
-
       function rotateX() {
         let cos = Math.cos(angleX);
         let sin = Math.sin(angleX);
-        for (let i = 0; i < circles.length; i++) {
-          let y1 = circles[i].y * cos - circles[i].z * sin;
-          let z1 = circles[i].z * cos + circles[i].y * sin;
-          circles[i].y = y1;
-          circles[i].z = z1;
+        for (let i = 0; i < labels.length; i++) {
+          let y1 = labels[i].y * cos - labels[i].z * sin;
+          let z1 = labels[i].z * cos + labels[i].y * sin;
+          labels[i].y = y1;
+          labels[i].z = z1;
         }
       }
 
       function rotateY() {
         let cos = Math.cos(angleY);
         let sin = Math.sin(angleY);
-        for (let i = 0; i < circles.length; i++) {
-          let x1 = circles[i].x * cos - circles[i].z * sin;
-          let z1 = circles[i].z * cos + circles[i].x * sin;
-          circles[i].x = x1;
-          circles[i].z = z1;
+        for (let i = 0; i < labels.length; i++) {
+          let x1 = labels[i].x * cos - labels[i].z * sin;
+          let z1 = labels[i].z * cos + labels[i].x * sin;
+          labels[i].x = x1;
+          labels[i].z = z1;
         }
       }
 
       function rotateZ() {
         let cos = Math.cos(angleY);
         let sin = Math.sin(angleY);
-        for (let i = 0; i < circles.length; i++) {
-          let x1 = circles[i].x * cos - circles[i].y * sin;
-          let y1 = circles[i].y * cos + circles[i].x * sin;
-          circles[i].x = x1;
-          circles[i].y = y1;
+        for (let i = 0; i < labels.length; i++) {
+          let x1 = labels[i].x * cos - labels[i].y * sin;
+          let y1 = labels[i].y * cos + labels[i].x * sin;
+          labels[i].x = x1;
+          labels[i].y = y1;
         }
       }
 
       let init = function() {
         for (let i = 0; i < points.length; i++) {
           let t = ctx.measureText(tags[i]);
-          circles.push(
-            new circle(
+          labels.push(
+            new label(
               points[i].x,
               points[i].y,
               points[i].z,
               tags[i],
               t.width,
-              60
+              fontMax
             )
           );
         }
@@ -233,8 +236,8 @@ export default {
         rotateX();
         rotateY();
         rotateZ();
-        for (let i = 0; i < circles.length; i++) {
-          circles[i].paint();
+        for (let i = 0; i < labels.length; i++) {
+          labels[i].paint();
         }
         if (animation.running) {
           requestAnimationFrame(animate);
