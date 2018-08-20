@@ -133,7 +133,7 @@ export default {
       }
     },
     loadmore: function() {
-      console.log("loadmore");
+      // console.log("loadmore");
       this.reloadData();
     }
   },

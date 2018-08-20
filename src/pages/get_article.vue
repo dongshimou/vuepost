@@ -83,7 +83,7 @@ export default {
         res => {
           if (res.body.code == 1000) {
             let data = res.body.data;
-            console.log(data);
+            // console.log(data);
             this.art_context = data.context;
             this.art_tags = data.tags;
             this.art_title = data.title;
@@ -119,7 +119,7 @@ export default {
         res => {
           if (res.body.code == 1000) {
             let data = res.body.data;
-            console.log("replays : ", data);
+            // console.log("replays : ", data);
             this.art_replays = data.replays;
           } else {
             console.log(res.body.msg);
@@ -133,7 +133,7 @@ export default {
       this.art_replay = s;
     },
     sub_replay: function() {
-      console.log(this.art_replay);
+      // console.log(this.art_replay);
       this.$http
         .post(this.base_address + "/replay", {
           title: this.art_title,
@@ -142,7 +142,7 @@ export default {
         .then(
           res => {
             if (res.body.code == 1000) {
-              console.log("replay ok");
+              // console.log("replay ok");
               this.reload_replays();
             } else {
             }

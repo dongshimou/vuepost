@@ -28,7 +28,7 @@ import GlobalData from "@/components/global";
 export default {
   data() {
     return {
-      base_address:GlobalData.inter,
+      base_address: GlobalData.inter,
       sub_text: "提交",
       sub_color: "#66ccff",
 
@@ -44,7 +44,7 @@ export default {
       art_title: "",
       art_author: "",
 
-      page_status:"create"
+      page_status: "create"
     };
   },
 
@@ -54,11 +54,12 @@ export default {
     "single-input": SingleInput
   },
   mounted() {
-    if (this.$route.name=="update_article"){
-      this.fetch_article(this.base_address+'/article/'+this.$route.params.title)
-      this.page_status="update"
-    }else if (this.$route.name=="create_article"){
-
+    if (this.$route.name == "update_article") {
+      this.fetch_article(
+        this.base_address + "/article/" + this.$route.params.title
+      );
+      this.page_status = "update";
+    } else if (this.$route.name == "create_article") {
     }
   },
   watch: {
@@ -129,13 +130,14 @@ export default {
       this.is_edit = !this.is_edit;
     },
     sub_act: function() {
-      let path_address=""
-      if (this.page_status=="create"){
-        path_address="/article"
-      }else if (this.page_status=="update"){
-        path_address="/article/update/"+this.art_title
+      let path_address = "";
+      if (this.page_status == "create") {
+        path_address = "/article";
+      } else if (this.page_status == "update") {
+        path_address = "/article/update/" + this.art_title;
       }
-      this.$http.post(this.base_address + path_address, {
+      this.$http
+        .post(this.base_address + path_address, {
           title: this.art_title,
           context: this.art_context,
           tags: this.art_tags
@@ -143,16 +145,16 @@ export default {
         .then(
           res => {
             if (res.body.code == 1000) {
-              console.log("ok -> jump to next");
+              // console.log("ok -> jump to next");
+              this.$router.push({
+                name: "get_article",
+                params: {
+                  title: this.art_title
+                }
+              });
             } else {
               console.log(res.body.msg);
             }
-            this.$router.push({
-              name: "get_article",
-              params: {
-                title: this.art_title
-              }
-            });
           },
           res => {
             console.log(res.body.msg);
