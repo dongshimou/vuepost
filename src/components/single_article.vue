@@ -1,5 +1,5 @@
 <template>
-<div id="a_total">
+<div id="a_total" @mouseover="mouseOver" @mouseleave="mouseLeave" v-bind:style="thisColor">
     <div id="a_head">
     <label id="a_title">{{article.title}}</label>
     <label id="a_time">{{moment(article.time).fromNow()}}</label>
@@ -26,10 +26,32 @@ export default {
     "article-tags": ArticleTags,
   },
   data() {
-    return {};
+    return {
+      activeColor:{
+        "background-color":"rgba(66, 188, 255, 0.3)"
+      },
+      defaultColor:{
+        "background-color":"rgba(160, 160, 160, 0.3)"
+      },
+      thisColor:{
+        "background-color":"rgba(160,160,160,0.15)"
+      }
+    };
   },
   props: {
     article: Object
+  },
+  methods:{
+    mouseOver:function(){
+      console.log("over")
+      this.thisColor=this.activeColor
+    },
+    mouseLeave:function(){
+      console.log("leave")
+      this.thisColor=this.defaultColor
+    }
+  },
+  computed:{
   },
   created() {
 
@@ -43,7 +65,7 @@ export default {
 <style scoped>
 #a_total {
   padding: 10px 15px;
-  background-color: rgba(160, 160, 160, 0.15);
+  /* background-color: rgba(160, 160, 160, 0.15); */
   padding-bottom: 40px;
 }
 #a_head {

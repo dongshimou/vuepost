@@ -20,7 +20,7 @@ import ToggleButton from 'vue-js-toggle-button';
 
 import 'mavon-editor/dist/css/index.css'
 // import './assets/animate.min.css'
-// import 'font-awesome/css/font-awesome.min.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 Vue.use(ToggleButton)
 Vue.use(mavonEditor)

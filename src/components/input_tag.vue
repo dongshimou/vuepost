@@ -214,10 +214,10 @@ label.read-only{
 
 
 .vue-input-tag-wrapper .input-tag {
-  background-color: #373a3a;
+  background-color: rgba(255, 127, 80, 0.8);
   border-radius: 2px;
   border: 1px solid #09a8e7;
-  color: #86b9e2;
+  color: #fff;
   display: inline-block;
   font-size: 13px;
   font-weight: 400;
