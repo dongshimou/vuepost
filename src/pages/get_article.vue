@@ -5,17 +5,22 @@
   <input-tag title="Tags" :readOnly="true" :tags.sync="art_tags" ></input-tag>
     <div class="article-nav-header">
     <div class="article-nav-header-left">
+     
     <router-link v-if="art_prev!=''" :to="link_prev" @click="reload">
-    <strong class="article-nav-caption"></strong>
+       <i class="fa fa-arrow-circle-left"></i>
+    <!-- <strong class="article-nav-caption"><</strong> -->
     <p class="article-nav-title">{{art_prev}}</p>
     </router-link>
     </div>
 
     <div class="article-nav-header-right">
+       
     <router-link v-if="art_next!=''" :to="link_next" @click="reload">
     <p class="article-nav-title">{{art_next}}</p>
-    <strong class="article-nav-caption">></strong>
+    <!-- <strong class="article-nav-caption">></strong> -->
+    <i class="fa fa-arrow-circle-right"></i>
     </router-link>
+    
     </div>
 
     </div>
@@ -23,17 +28,22 @@
     <mavon-editor :toolbarsFlag="false" :subfield="false"  defaultOpen="preview" codeStyle="monokai"  v-model="art_context"/>
     <div class="article-nav-header">
           <div class="article-nav-header-left">
+             
     <router-link v-if="art_prev!=''" :to="link_prev" @click="reload">
-    <strong class="article-nav-caption"></strong>
+      <i class="fa fa-arrow-circle-left"></i>
+    <!-- <strong class="article-nav-caption"><</strong> -->
     <p class="article-nav-title">{{art_prev}}</p>
     </router-link>
           </div>
 
           <div class="article-nav-header-right">          
+            
     <router-link v-if="art_next!=''" :to="link_next" @click="reload">
     <p class="article-nav-title">{{art_next}}</p>
-    <strong class="article-nav-caption">></strong>
+    <!-- <strong class="article-nav-caption">></strong> -->
+    <i class="fa fa-arrow-circle-right"></i>
     </router-link>
+     
           </div>
     </div>
 
@@ -174,6 +184,40 @@ export default {
   }
 };
 </script>
+<style scoped>
+a{
+  /* 去掉链接下划线 */
+  text-decoration:none;
+  /* 让图标和文字在一行 */
+  display: table;
+}
+a *{
+  display: table-cell;
+  /* 颜色渐变 */
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  -ms-transition: color 0.3s;
+  transition: color 0.3s;
+}
+a i{
+  /* a下icon颜色 */
+  color: #66ccff;
+}
+a:hover i{
+  /* a下icon 掠过颜色 */
+  color: red;
+}
+a p{
+  /* a下文字 */
+  display: inline-block;
+  font-size: 1rem;
+  color: #666;
+}
+a:hover p{
+  /* a下掠过颜色 */
+  color: #66ccff;
+}
+</style>
 
 <style>
 .article-nav-header {
@@ -185,7 +229,7 @@ export default {
 }
 .article-nav-header-left {
 }
-.article-nav-caption {
+/* .article-nav-caption {
   background: #999;
   color: #fff;
   border-radius: 100%;
@@ -197,14 +241,8 @@ export default {
   -moz-transition: background 0.3s;
   -ms-transition: background 0.3s;
   transition: background 0.3s;
-}
+} */
 .article-nav-title {
-  display: inline-block;
-  font-size: 1rem;
-  color: #999;
-  -webkit-transition: color 0.3s;
-  -moz-transition: color 0.3s;
-  -ms-transition: color 0.3s;
-  transition: color 0.3s;
+  /* move to [a p] */
 }
 </style>

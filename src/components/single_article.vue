@@ -67,6 +67,7 @@ export default {
   padding: 10px 15px;
   /* background-color: rgba(160, 160, 160, 0.15); */
   padding-bottom: 40px;
+  border-radius:10px;
 }
 #a_head {
   height: 40px;
@@ -89,5 +90,19 @@ export default {
 #a_time {
   float: right;
   color: #ff7e7ef0;
+}
+/* 放大动画 */
+#a_total {
+    transition:All 0.2s ease-in-out;
+    -webkit-transition:All 0.2s ease-in-out;
+    -moz-transition:All 0.2s ease-in-out;
+    -o-transition:All 0.2s ease-in-out;
+}
+#a_total:hover {
+    transform:scale(1.08);
+    -webkit-transform:scale(1.08);
+    -moz-transform:scale(1.08);
+    -o-transform:scale(1.08);
+    -ms-transform:scale(1.08);
 }
 </style>

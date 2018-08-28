@@ -1,4 +1,5 @@
 <template>
+
   <div id="app" class="flexRowBox">
     <!-- <router-nav/>     -->
     <div id="home-nav" class="flexRowBox">
@@ -93,8 +94,8 @@ ul {
     margin: 0;
   }
   #home-context {
-    width: 100%;
-    margin: 0;
+    width: 95%;
+    margin: 5%;
   }
 }
 @media screen and (min-width: 480px) and (max-width: 720px) {
@@ -103,8 +104,8 @@ ul {
     margin: 0;
   }
   #home-context {
-    width: 96%;
-    margin: 4%;
+    width: 90%;
+    margin: 10%;
   }
 }
 @media screen and (min-width: 720px) and (max-width: 960px) {
@@ -114,7 +115,7 @@ ul {
   }
   #home-context {
     width: 720px;
-    margin: auto;
+    margin: 5%;
   }
 }
 @media screen and (min-width: 960px) and (max-width: 1280px) {

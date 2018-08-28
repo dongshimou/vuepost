@@ -1,6 +1,6 @@
 <template>
-  <div >
-      <div class="flexRowBox">
+  <div>
+      <div id="nav-avatar" class="flexRowBox">
         <a href="https://github.com/yanthems">
       <avatar 
       username="Yanthems"
@@ -9,7 +9,10 @@
       </avatar>
         </a>
       </div>
+      <div id="nav-descrip">
       <p>Yanthems</p>
+      <p>anime,coder,gamer</p>
+      </div>
       <!-- <Twitter
       title_social="Twitter"
       :page_title="title"
@@ -20,17 +23,17 @@
       <!-- <a href="https://twitter.com/dongshimou">
         <i class="pserson"></i>
      </a> -->
-  <div class="flexRowBox quickLink">
+  <div id="nav-links" class="flexRowBox quickLink">
       <a href="https://twitter.com/yanthems1" target="_blank">
-      <i class="fa fa-fw fa-twitter"></i> Twitter</a>
+      <i class="fa fa-twitter"></i> Twitter</a>
       <a href="https://weibo.com/WhyYouSoSad" target="_blank">
       <i class="fa fa-weibo"></i> Weibo</a>
       <a href="https://github.com/yanthems" target="_blank">
       <i class="fa fa-github"></i> Github</a>
       <a href="https://steamcommunity.com/id/yanthems" target="_blank">
-      <i class="fa fa-steam"></i> Steam</a>
+      <i class="fa fa-steam-square"></i> Steam</a>
   </div>
-    <div>
+    <div id="nav-tags">
     <tags-ball :style="{'background-color':'#eeeeee'}" :tags="tags"/>
     </div>
   </div>
@@ -84,6 +87,12 @@ export default {
 <style>
 </style>
 <style scoped>
+#nav-links{
+  margin-top:15px;
+}
+#nav-links i{
+  font-size:32px;
+}
 .quickLink{
   width:200px;
 }
@@ -96,5 +105,28 @@ export default {
 }
 .quickLink a:hover{
   color:#66ccff;
+}
+</style>
+
+<style lang="scss" scoped>
+@media screen and (max-width: 480px) {
+  #nav-descrip{
+    display: none;
+  }
+  #nav-tags{
+    display: none;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 720px) {
+  #nav-avatar{
+  }
+  #nav-tags{
+    display: none;
+  }
+}
+@media screen and (min-width: 720px) and (max-width: 960px) {
+  #nav-tags{
+    display: none;
+  }
 }
 </style>
