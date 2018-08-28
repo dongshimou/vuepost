@@ -28,7 +28,8 @@
     "vue-progress-button": "^1.3.0",
     "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1",
-    "vue-scroll-loadmore": "^0.1.3"
+    "vue-scroll-loadmore": "^0.1.3",
+    "vuejs-noty": "^0.1.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

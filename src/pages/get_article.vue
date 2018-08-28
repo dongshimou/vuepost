@@ -117,10 +117,12 @@ export default {
               };
             }
           } else {
-            console.log(res.body.msg);
+            this.$noty.error(res.body.msg)
           }
         },
-        res => {}
+        res => {
+          this.$noty.error(res.statusText)
+        }
       );
     },
 
@@ -132,10 +134,13 @@ export default {
             // console.log("replays : ", data);
             this.art_replays = data.replays;
           } else {
-            console.log(res.body.msg);
+            // console.log(res.body.msg);
+            this.$noty.error(res.body.msg)
           }
         },
-        res => {}
+        res => {
+          this.$noty.error(res.statusText)
+        }
       );
     },
 
@@ -155,9 +160,12 @@ export default {
               // console.log("replay ok");
               this.reload_replays();
             } else {
+              this.$noty.error(res.body.msg)
             }
           },
-          res => {}
+          res => {
+            this.$noty.error(res.statusText)
+          }
         );
     },
 

@@ -69,10 +69,12 @@ export default {
           if (res.body.code == 1000) {
             let data = res.body.data;
             this.tags = data.names;
+          }else{
+            this.$noty.error(res.body.msg)
           }
         },
         res => {
-          console.log(res.body);
+          this.$noty.error(res.statusText)
         }
       );
     }

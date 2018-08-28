@@ -96,9 +96,12 @@ export default {
             // }
           } else {
             console.log(res.body.msg);
+            this.$noty.error(res.body.msg)
           }
         },
-        res => {}
+        res => {
+          this.$noty.error(res.statusText)
+        }
       );
     },
     get_title: function(s) {
@@ -144,6 +147,7 @@ export default {
         })
         .then(
           res => {
+            console.log(res.body)
             if (res.body.code == 1000) {
               // console.log("ok -> jump to next");
               this.$router.push({
@@ -152,12 +156,13 @@ export default {
                   title: this.art_title
                 }
               });
+              this.$noty.success(res.body.msg)
             } else {
-              console.log(res.body.msg);
+              this.$noty.error(res.body.msg)
             }
           },
           res => {
-            console.log(res.body.msg);
+            this.$noty.error(res.statusText)
           }
         );
     }

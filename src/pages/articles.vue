@@ -61,6 +61,7 @@ export default {
         })
         .then(
           res => {
+            if (res.body.code==1000){
             let data = res.body.data.articles;
             for (let i = 0; i < data.length; i++) {
               this.articles.push({
@@ -70,12 +71,16 @@ export default {
                 tags: data[i].tags
               });
               this.time = new Date(data[i].create_datetime)
+              }
+            }else{
+              this.$noty.error(res.body.msg)
             }
             console.log("load time:",this.time.toLocaleString());
             this.start_load = false;
           },
           res => {
             this.start_load = false;
+            this.$noty.error(res.statusText)
           }
         );
     },

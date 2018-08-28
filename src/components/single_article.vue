@@ -43,11 +43,11 @@ export default {
   },
   methods:{
     mouseOver:function(){
-      console.log("over")
+      // console.log("over")
       this.thisColor=this.activeColor
     },
     mouseLeave:function(){
-      console.log("leave")
+      // console.log("leave")
       this.thisColor=this.defaultColor
     }
   },

@@ -17,6 +17,12 @@ import ToggleButton from 'vue-js-toggle-button';
 
 // import Pin from 'vue-pin'
 // Vue.use(Pin)
+import VueNoty from 'vuejs-noty'
+import 'vuejs-noty/dist/vuejs-noty.css'
+Vue.use(VueNoty,{
+  timeout:3000,
+  layout:'topRight'
+})
 
 import 'mavon-editor/dist/css/index.css'
 // import './assets/animate.min.css'
