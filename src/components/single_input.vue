@@ -49,6 +49,9 @@ export default {
       } else {
         this.$el.firstChild.removeAttribute("disabled");
       }
+    },
+    value_change:function(){
+      this.$emit('update:value',this.value)
     }
   },
   watch: {
