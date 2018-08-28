@@ -46,9 +46,8 @@
      
           </div>
     </div>
-
-      <single-input title="Replay" @value="get_replay"/>
-      <progress-button class="btn" :fill-color="sub_color" @click="sub_replay">{{sub_text}}</progress-button>
+      <single-input @getValue="get_replay" :setValue="art_replay"/>
+      <progress-button class="btn-submit" :fill-color="sub_color" @click="sub_replay">{{sub_text}}</progress-button>
     <p v-for="replay in art_replays" style="text-align:left;">
     {{replay.context}}
     </p>
@@ -143,12 +142,11 @@ export default {
         }
       );
     },
-
     get_replay: function(s) {
       this.art_replay = s;
     },
     sub_replay: function() {
-      // console.log(this.art_replay);
+      console.log("art_replay",this.art_replay);
       this.$http
         .post(this.base_address + "/replay", {
           title: this.art_title,
@@ -158,6 +156,8 @@ export default {
           res => {
             if (res.body.code == 1000) {
               // console.log("replay ok");
+              this.$noty.success(res.body.msg)
+              this.art_replay=""
               this.reload_replays();
             } else {
               this.$noty.error(res.body.msg)
@@ -254,3 +254,4 @@ a:hover p{
   /* move to [a p] */
 }
 </style>
+

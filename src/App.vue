@@ -34,7 +34,7 @@ export default {
 };
 </script>git
 <style lang="scss">
-// @import "./assets/animate.min.css";
+// @import "@/assets/animate.min.css";
 // @font-face {
 //   font-family: "Material Icons";
 //   font-style: normal;
@@ -60,19 +60,7 @@ export default {
 // }
 </style>
 <style>
-.flexRowBox {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.flexRowBoxLeft{
-  text-align: left;
-  justify-content: flex-start;
-}
-.flexRowCenter {
-  align-items: center;
-}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -87,63 +75,3 @@ ul {
 }
 </style>
 
-<style lang="scss" scoped>
-@media screen and (max-width: 480px) {
-  #home-nav{
-    width:100%;
-    margin: 0;
-  }
-  #home-context {
-    width: 95%;
-    margin: 5%;
-  }
-}
-@media screen and (min-width: 480px) and (max-width: 720px) {
-  #home-nav {
-    width: 100%;
-    margin: 0;
-  }
-  #home-context {
-    width: 90%;
-    margin: 10%;
-  }
-}
-@media screen and (min-width: 720px) and (max-width: 960px) {
-  #home-nav {
-    width: 100%;
-    margin: 0;
-  }
-  #home-context {
-    width: 720px;
-    margin: 5%;
-  }
-}
-@media screen and (min-width: 960px) and (max-width: 1280px) {
-  #home-nav {
-    width: 10%;
-    margin: auto;
-    margin-top: 0;
-  }
-  #nav-fix {
-    position: fixed;
-  }
-  #home-context {
-    width: 70%;
-    margin: auto;
-  }
-}
-@media screen and (min-width: 1280px) {
-  #home-nav {
-    width: 200px;
-    margin: 0;
-    margin-left: auto;
-  }
-  #nav-fix {
-    position: fixed;
-  }
-  #home-context {
-    width: 1000px;
-    margin: auto;
-  }
-}
-</style>

@@ -1,0 +1,25 @@
+
+@charset "UTF-8";
+
+.flexRowBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .flexRowBoxLeft{
+    text-align: left;
+    justify-content: flex-start;
+  }
+  .flexRowCenter {
+    align-items: center;
+  }
+
+  .container {
+    font-family: "Roboto";
+    width: 100%;
+    margin: 0;
+    display: block;
+    background: #fff;
+    padding-bottom: 25px;
+  }

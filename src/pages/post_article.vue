@@ -1,10 +1,10 @@
 <template>
 <div id="post_article">
 <div class="container">
-  <single-input title="Title" @value="get_title" :setValue="art_title"></single-input>
+  <single-input title="Title" @getValue="get_title"></single-input>
   <input-tag title="Tags" limit="4" :tags.sync="art_tags" ></input-tag>
 </div>
-<div class="container  flexRowBox">
+<div class="container flexRowBox">
   <label>工具栏</label>
 <toggle-button :sync="true" :value="is_tool" @change="enable_toolbar"/>
   <label>多窗口</label>
@@ -16,7 +16,7 @@
 <toggle-button :sync="true" :value="is_edit" @change="enable_catalog"/>
 </div>
   <mavon-editor :toolbarsFlag="is_tool" :subfield="is_prew" :editable="is_edit" codeStyle="monokai" :defaultOpen="edit_prew" v-model="art_context"/>
-  <progress-button class="btn" :fill-color="sub_color" @click="sub_act">{{sub_text}}</progress-button>
+  <progress-button class="btn-submit" :fill-color="sub_color" @click="sub_act">{{sub_text}}</progress-button>
 </div>
 </template>
 
@@ -95,7 +95,7 @@ export default {
             //   };
             // }
           } else {
-            console.log(res.body.msg);
+            // console.log(res.body.msg);
             this.$noty.error(res.body.msg)
           }
         },
@@ -109,7 +109,7 @@ export default {
     },
     enable_multi: function() {
       this.is_multi = !this.is_multi;
-      console.log(this.is_multi);
+      // console.log(this.is_multi);
       if (this.is_multi) {
         this.is_prew = false;
         this.edit_prew = "preview";
@@ -147,7 +147,7 @@ export default {
         })
         .then(
           res => {
-            console.log(res.body)
+            // console.log(res.body)
             if (res.body.code == 1000) {
               // console.log("ok -> jump to next");
               this.$router.push({
@@ -170,47 +170,8 @@ export default {
 };
 </script>
 
-<style scoped>
-progress-button {
-  margin-top: 10vw;
-}
-</style>
-
 <style>
-.container {
-  font-family: "Roboto";
-  width: 100%;
-  margin: 0;
-  display: block;
-  background: #fff;
-  padding-bottom: 25px;
-}
-.switchs {
-}
+
 </style>
 
-<style lang="scss">
-.btn {
-  color: #666;
-  cursor: pointer;
-  display: block;
-  font-size: 16px;
-  // font-weight: 400;
-  line-height: 35px;
-  margin: auto;
 
-  margin-top: 25px;
-  max-width: 100px;
-  position: relative;
-  text-decoration: none;
-  text-transform: uppercase;
-  vertical-align: middle;
-  width: 100%;
-  text-shadow: none;
-  border: 0 solid;
-
-  &:hover {
-    text-decoration: none;
-  }
-}
-</style>

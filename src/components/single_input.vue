@@ -21,7 +21,7 @@ input.read-only ~ label {
 export default {
   data() {
     return {
-      value: ""
+      value:""
     };
   },
   props: {
@@ -32,10 +32,12 @@ export default {
       type: Boolean,
       default: false
     },
-    setValue: {
-      type: String,
-      default: ""
-    }
+    setValue:{
+      type:String,
+    },
+    // value:{
+    //   type:String,
+    // }
   },
   methods: {
     // renders:function(){
@@ -50,12 +52,18 @@ export default {
     }
   },
   watch: {
-    value: function() {
-      this.$emit("value", this.value);
+    // value:function(v){
+    //   this.$emit('update:value',v)
+    // }
+    value:function(v){
+      this.$emit('getValue',this.value)
     },
-    setValue: function(o) {
-      this.value = o;
+    setValue:function(v){
+      this.value=v
     }
+  },
+  computed:{
+    
   },
   mounted() {
     this.init_read_only();

@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.btn-submit {
+  color: #666;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 35px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom:15px;
+  width: 100px;
+  /* position: relative; */
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  text-shadow: none;
+  background-color: rgba(66, 66, 66, 0.4);
+}
+
+.btn-submit:hover {
+  background-color: rgba(255, 127, 80, 0.8);
+  color: #fff;
+}
