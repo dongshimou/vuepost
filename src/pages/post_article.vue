@@ -1,7 +1,7 @@
 <template>
 <div id="post_article">
 <div class="container">
-  <single-input title="Title" @getValue="get_title"></single-input>
+  <single-input title="Title" @getValue="get_title" :setValue="art_title"></single-input>
   <input-tag title="Tags" limit="4" :tags.sync="art_tags" ></input-tag>
 </div>
 <div class="container flexRowBox">
@@ -44,7 +44,8 @@ export default {
       art_title: "",
       art_author: "",
 
-      page_status: "create"
+      page_status: "create",
+      update_title:"",
     };
   },
 
@@ -55,11 +56,12 @@ export default {
   },
   mounted() {
     if (this.$route.name == "update_article") {
-      this.fetch_article(
-        this.base_address + "/article/" + this.$route.params.title
-      );
+      let address=this.base_address + "/article/" + this.$route.params.title
+      this.update_title=this.$route.params.title
+      this.fetch_article(address);
       this.page_status = "update";
     } else if (this.$route.name == "create_article") {
+
     }
   },
   watch: {
@@ -94,6 +96,7 @@ export default {
             //     }
             //   };
             // }
+            console.log("title",this.art_title)
           } else {
             // console.log(res.body.msg);
             this.$noty.error(res.body.msg)
@@ -137,8 +140,9 @@ export default {
       if (this.page_status == "create") {
         path_address = "/article";
       } else if (this.page_status == "update") {
-        path_address = "/article/update/" + this.art_title;
+        path_address = "/article/update/" + this.update_title;
       }
+      console.log(path_address,this.art_title)
       this.$http
         .post(this.base_address + path_address, {
           title: this.art_title,
