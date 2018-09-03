@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .btn-submit {
-  color: #666;
+  color: #666666cc;
+  border: none;
   cursor: pointer;
   font-size: 16px;
   line-height: 35px;
