@@ -1,5 +1,4 @@
 <template>
-
   <div id="app" class="flexRowBox">
     <!-- <router-nav/>     -->
     <div id="home-nav" class="flexRowBox">
@@ -10,20 +9,19 @@
     <div id="home-context">
       <router-view />
     </div>
+    <quick-menu/>
   </div>
 </template>
 
 <script>
 import HomeNav from "@/components/home_nav";
+import QuickMenu from "@/components/quick_menu";
 
 export default {
   name: "App",
   components: {
-    "home-nav": HomeNav
-  },
-  props: {
-    is_pin: Boolean,
-    default: true
+    "home-nav": HomeNav,
+    "quick-menu":QuickMenu
   },
   methods: {
     test: function() {}

@@ -1,7 +1,7 @@
 <template>
 <div>
   <!-- <div v-scroll-loadmore='loadmore'> -->
-<ul v-for="art in articles">
+<ul v-for="art of articles" :id="art.title">
    <a href="javascript:void(0)" @click="art_jump(art)">
      <single-article :article="art"/>
     </a>

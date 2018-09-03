@@ -7,6 +7,12 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+  .flexColBox{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
   .flexRowBoxLeft{
     text-align: left;
     justify-content: flex-start;
