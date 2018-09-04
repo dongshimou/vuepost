@@ -3,9 +3,23 @@
         <div v-if="isTop" @click="backTop" class="menu-item flexColBox">
             <div class="item-label" >顶部</div>
         </div>
+        
         <div v-if="showHome" @click="backHome" class="menu-item flexColBox">
             <div class="item-label">首页</div>
         </div>
+        
+        <div v-if="showPost" @click="backPost" class="menu-item flexColBox">
+          <div class="item-label">新建</div>
+        </div>
+        
+        <div v-if="showUpdate" @click="backUpdate" class="menu-item flexColBox">
+          <div class="item-label">更新</div>
+        </div>
+        
+        <div v-if="showLogin" @click="backLogin" class="menu-item flexColBox">
+          <div class="item-label">登录</div>
+        </div>
+
         <div @click="backLast" class="menu-item flexColBox">
              <div class="item-label">返回</div>
         </div>
@@ -21,7 +35,7 @@ export default {
   data() {
     return {
       isTop: false,
-      isHome:true,
+      isLogin:false,
     };
   },
   methods: {
@@ -92,6 +106,19 @@ export default {
     },
     backHome:function(){
         this.$router.push({name:'articles'})
+    },
+    backPost:function(){
+      this.$router.push({name:'create_article'})
+    },
+    backUpdate:function(){
+      console.log(this.$route)
+      this.$router.push({
+        name:'update_article',
+        title:this.$route.title
+        })
+    },
+    backLogin:function(){
+      console.log("还没写登录功能")
     }
   },
   mounted() {
@@ -99,12 +126,34 @@ export default {
   },
   computed:{
       showHome:function(){
+        let isHome=true
           if(this.$route.name=="articles"){
-                this.isHome=true
+                isHome=true
             }else{
-                this.isHome=false
+                isHome=false
             }
-          return this.isHome==false
+          return isHome==false
+      },
+      showPost:function(){
+        let isPost=true
+        if(this.$route.name=="create_article"){
+          isPost=true
+        }else{
+          isPost=false
+        }
+        return isPost==false&&this.isLogin==true
+      },
+      showUpdate:function(){
+        let isArt=false
+        if(this.$route.name=="get_article"){
+          isArt=true
+        }else{
+          isArt=false
+        }
+        return isArt==true // &&this.isLogin==true
+      },
+      showLogin:function(){
+        return this.isLogin==false
       }
   }
 };
