@@ -2,26 +2,26 @@
   <div id="app" class="flexRowBox">
     <!-- <router-nav/>     -->
     <div id="home-nav" class="flexRowBox">
-      <div id="nav-fix">
-    <home-nav />
-      </div>
+      <div id="nav-fix"><home-nav /></div>
     </div>
     <div id="home-context">
       <router-view />
     </div>
     <quick-menu/>
+    <!-- <quick-fab/> -->
   </div>
 </template>
 
 <script>
 import HomeNav from "@/components/home_nav";
 import QuickMenu from "@/components/quick_menu";
-
+import FabDiy from "@/components/fab_diy"
 export default {
   name: "App",
   components: {
     "home-nav": HomeNav,
-    "quick-menu":QuickMenu
+    "quick-menu":QuickMenu,
+    "quick-fab":FabDiy
   },
   methods: {
     test: function() {}

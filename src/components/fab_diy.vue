@@ -1,17 +1,27 @@
 <template>
 <div>
-  <fab :actions="fabActions"
+  <fab 
+  :actions="fabActions"
+    :position="pos"
+    :bg-color="bgColor"
     @signin="signin"
     @signout="signou"
     @signup="signup"
     @about="about"
-    @article="article">
+    @article="article"
+    >
   </fab>
+    <!-- :style='{"z-index":"9999"}' -->
 </div>
 </template>
 
 <script>
 import fab from "vue-fab";
+import '@/assets/fab.css'
+import '@/assets/animate.min.css'
+
+// import 'https://fonts.googleapis.com/icon?family=Material+Icons'
+// import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'
 
 export default {
   components: {
@@ -19,10 +29,12 @@ export default {
   },
   data() {
     return {
-      fabActions: []
+      fabActions: [],
+      bgColor:"#66ccff",
+      pos:"bottom-right"
     };
   },
-  name: "my-fab",
+  name: "quick-fab",
   props: {
     is_about: {
       type: Boolean,
@@ -90,7 +102,12 @@ export default {
       this.$router.push({ name: "post_article" });
     },
     signin() {},
-    signup() {}
+    signup() {},
+    signout(){},
+    about(){},
+  },
+  mounted(){
+    add_about()
   }
 };
 </script>
