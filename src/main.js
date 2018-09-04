@@ -25,8 +25,9 @@ Vue.use(VueNoty,{
 })
 
 import 'mavon-editor/dist/css/index.css'
-// import './assets/animate.min.css'
 import 'font-awesome/css/font-awesome.min.css'
+
+// import '@/assets/animate.min.css'
 
 import '@/assets/button.css'
 import '@/assets/common.css'
