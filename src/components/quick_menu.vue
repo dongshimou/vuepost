@@ -150,7 +150,7 @@ export default {
         }else{
           isArt=false
         }
-        return isArt==true // &&this.isLogin==true
+        return isArt==true&&this.isLogin==true
       },
       showLogin:function(){
         return this.isLogin==false
