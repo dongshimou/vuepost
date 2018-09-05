@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flexColBox">
         <ul v-for="s of servers" :id="s.host">
             <single-ss :server="s"/>
         </ul>
