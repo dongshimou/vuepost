@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import resource from 'vue-resource'
-
+Vue.use(resource)
+Vue.use(Router)
 
 import post_article from '@/pages/post_article'
 import get_article from '@/pages/get_article'
 import articles from '@/pages/articles'
-Vue.use(resource)
-Vue.use(Router)
+
+import get_ss from '@/pages/get_ss'
 
 export default new Router({
   mode: 'history',
@@ -31,6 +32,11 @@ export default new Router({
       path:'/article/update/:title',
       name:'update_article',
       component:post_article
+    },
+    {
+      path:'/ss',
+      name:'get_ss',
+      component:get_ss
     }
 
   ]

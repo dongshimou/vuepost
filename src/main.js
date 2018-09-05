@@ -24,6 +24,9 @@ Vue.use(VueNoty,{
   layout:'topRight'
 })
 
+import VTooltip from 'v-tooltip'
+Vue.use(VTooltip)
+
 import 'mavon-editor/dist/css/index.css'
 import 'font-awesome/css/font-awesome.min.css'
 
