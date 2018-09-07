@@ -9,7 +9,7 @@
 <style lang="scss" scoped>
 .servers {
   // justify-content: flex-start;
-  width: 400px;
+  width: 320px;
 }
 </style>
 
