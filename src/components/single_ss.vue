@@ -1,9 +1,6 @@
 <template>
     <div id="server" :class="server.is_online ? online:offline">
         <div id="channels">
-            <!-- <ul v-for="cc in channelStatus" :class="cc.status" @click="getChan(cc)" @mouseover="getMsg(cc)"></ul> -->
-             <!-- v-tooltip="{ content: msg }" -->
-
             <v-popover
             offset="16"
             v-for="cc in channelStatus"  :class="cc.status" 
@@ -39,16 +36,16 @@ export default {
   },
   methods: {
     getChan: function(cc) {
-      console.log(cc.chan);
+      if(!cc){
+        return
+      }
+      // console.log(cc.chan);
         let index = Math.floor(Math.random() * cc.chan.length);
     //   console.log(index);
     //   console.log(cc.chan[index]);
       this.chan=cc.chan[index]
       console.log(this.chan)
     },
-    getMsg: function(cc) {
-
-    }
   },
   mounted() {
     let channels = this.server.channels;
