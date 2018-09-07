@@ -1,24 +1,27 @@
 <template>
-    <div id="server" :class="server.is_online ? online:offline">
+<div class="flexColBox">
+    <div id="server" class="flexColBox" :class="server.is_online ? online:offline">
         <div id="channels">
             <v-popover
             offset="16"
             v-for="cc in channelStatus"  :class="cc.status" 
             :disabled="!(cc.status=='exist')"
             :key="cc.id"
+            
             >
-            <button @click="getChan(cc)"></button>
+            <div class="chan-btn" @click="getChan(cc)"></div>
             <template slot="popover">
-                <p>{{chan.host}}</p>
-                <p>{{chan.port}}</p>
-                <p>{{chan.method}}</p>
-                <p>{{chan.password}}</p>
+                <div class="flexRowBox flexRowBoxLeft"><p>地址:</p><p>{{chan.host}}</p></div>
+                <div class="flexRowBox flexRowBoxLeft"><p>端口:</p><p>{{chan.port}}</p></div>
+                <div class="flexRowBox flexRowBoxLeft"><p>加密:</p><p>{{chan.method}}</p></div>
+                <div class="flexRowBox flexRowBoxLeft"><p>密码:</p><p>{{chan.password}}</p></div>
                 <!-- <a v-close-popover>Close</a> -->
             </template>
             </v-popover>
 
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -61,7 +64,7 @@ export default {
     for (let i = 0; i < 10; i++) {
       let temp = {
         status: "",
-        id:i,
+        id: i,
         chan: []
       };
       if (i < sl) {
@@ -95,7 +98,7 @@ export default {
       color: black;
       padding: 24px;
       border-radius: 5px;
-      box-shadow: 0 5px 30px rgba(black, .1);
+      box-shadow: 0 5px 30px rgba(black, 0.1);
     }
 
     .popover-arrow {
@@ -105,7 +108,7 @@ export default {
 }
 </style>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $acolor: rgba(0, 200, 0, 0.4);
 $dcolor: rgba(200, 0, 0, 0.4);
 $more: rgba(0, 0, 0, 0.5);
@@ -114,28 +117,59 @@ $more: rgba(0, 0, 0, 0.5);
   width: 80%;
   height: 10vh;
   position: relative;
-  margin-bottom: 5vh;
   &.Online {
     background-color: rgba(160, 160, 160, 0.3);
     #channels {
-
+      *.not {
+        background-color: transparent;
+      }
+      *.exist {
+        background-color: $acolor;
+        .chan-btn {
+          &:hover {
+            background-color: #fff;
+          }
+        }
+      }
     }
   }
   &.Offline {
     background-color: rgba(160, 160, 160, 0.8);
     #channels {
-
+       *.exist {
+        background-color: $dcolor;
+        .chan-btn {
+          &:hover {
+            background-color: #ddd;
+          }
+        }
+      }
     }
   }
   #channels {
     justify-content: space-between;
     display: flex;
     flex-direction: row;
-    *.not {
-        background-color: transparent;
+    *:focus {
+        outline: none;
+      }
+    > * {
+      width: 8%;
+      margin: auto;
+      height: 9vh;
     }
-    *.exist{
-        background-color:$acolor;
+
+    div > span {
+      width: 100%;
+      height: 100%;
+    }
+    *.chan-btn {
+      border-radius: 20%;
+      width: 100%;
+      height: 100%;
+    }
+    *.exist {
+      border-radius: 20%;
     }
   }
 }
