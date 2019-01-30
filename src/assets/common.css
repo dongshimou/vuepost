@@ -17,6 +17,10 @@
     text-align: left;
     justify-content: flex-start;
   }
+  .flexRowBoxRight{
+    text-align: right;
+    justify-content: flex-end;
+  }
   .flexRowCenter {
     align-items: center;
   }

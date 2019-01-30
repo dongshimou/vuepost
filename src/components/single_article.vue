@@ -59,9 +59,6 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
 <style scoped>
 #a_total {
   padding: 10px 15px;
