@@ -85,7 +85,7 @@ export default {
     },
     fetch_mood:function(){
       let address=GlobalData.inter+"/mood/last";
-      this.$http.get(address).then(
+      this.$http.get(address, {params: {limit: 3}}).then(
         res=>{
           if(res.body.code==1000){
             let data=res.body.data;
