@@ -1,33 +1,20 @@
 <template>
-<div id="a_total" @mouseover="mouseOver" @mouseleave="mouseLeave" v-bind:style="thisColor">
-    <div id="a_head">
-    <label id="a_title">{{article.title}}</label>
+    <div id="a_total" @mouseover="mouseOver" @mouseleave="mouseLeave" v-bind:style="thisColor">
+    <label id="a_title">{{article.title}}
+    </label>
     <label id="a_time">{{moment(article.time).fromNow()}}</label>
     </div>
-    <hr/>    
-
-    <div id="a_body">
-    <p id="a_context" for="">{{article.context}}</p>
-    </div>
-    <hr/>
-    
-    <div id="a_tail">
-    <article-tags :tags="article.tags"/>        
-    </div>
-</div>
 </template>
 
 <script>
-import ArticleTags from "@/components/article_tags";
-
 export default {
-  name: "single_article",
-  components: {
-    "article-tags": ArticleTags,
-  },
-  data() {
-    return {
-      activeColor:{
+    name:"simple_article",
+    components:{
+
+    },
+    data(){
+        return{
+            activeColor:{
         "background-color":"rgba(66, 188, 255, 0.3)"
       },
       defaultColor:{
@@ -36,13 +23,13 @@ export default {
       thisColor:{
         "background-color":"rgba(160,160,160,0.15)"
       }
-    };
-  },
-  props: {
+        };
+    },
+    props:{
     article: Object
-  },
-  methods:{
-    mouseOver:function(){
+    },
+    methods:{
+            mouseOver:function(){
       // console.log("over")
       this.thisColor=this.activeColor
     },
@@ -50,13 +37,8 @@ export default {
       // console.log("leave")
       this.thisColor=this.defaultColor
     }
-  },
-  computed:{
-  },
-  created() {
-
-  }
-};
+    }
+}
 </script>
 
 <style scoped>
@@ -66,23 +48,10 @@ export default {
   padding-bottom: 40px;
   border-radius:10px;
 }
-#a_head {
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 #a_title {
   float: left;
   color: #000000;
   word-break: break-all;
-}
-#a_context {
-  text-indent: 2em;
-  text-align: left;
-  color: #999;
-  word-break: break-word;
 }
 #a_time {
   float: right;

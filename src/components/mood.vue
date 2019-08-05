@@ -44,6 +44,7 @@ export default {
     padding-left: 10px;
     box-shadow: 0px 2px 2px 2px #ccc;
     word-wrap:break-word; 
+    max-width: 100%;
 }
 #mood-box{
     margin-top:2vh;

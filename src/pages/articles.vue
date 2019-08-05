@@ -3,7 +3,8 @@
   <!-- <div v-scroll-loadmore='loadmore'> -->
 <ul v-for="art of articles" :id="art.title">
    <a href="javascript:void(0)" @click="art_jump(art)">
-     <single-article :article="art"/>
+     <!-- <single-article :article="art"/> -->
+     <simple-article :article="art"/>
     </a>
 </ul>
 </div>
@@ -22,11 +23,13 @@ a:visited {
 
 <script>
 import SingleArticle from "@/components/single_article";
+import SimpleArticle from "@/components/simple_article"
 import GlobalData from "@/components/global";
 
 export default {
   components: {
     "single-article": SingleArticle,
+    "simple-article":SimpleArticle,
     GlobalData
   },
   data() {
@@ -66,7 +69,7 @@ export default {
             for (let i = 0; i < data.length; i++) {
               this.articles.push({
                 title: data[i].title,
-                context: data[i].context.substring(0, 256) + "...",
+                context: data[i].context.substring(0, 128) + "...",
                 time: data[i].create_datetime,
                 tags: data[i].tags
               });
