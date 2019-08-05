@@ -173,11 +173,17 @@ export default {
   #nav-tags {
     display: none;
   }
+  #nav-mood{
+    display: none;
+  }
 }
 @media screen and (min-width: 480px) and (max-width: 720px) {
   #nav-avatar {
   }
   #nav-tags {
+    display: none;
+  }
+  #nav-mood{
     display: none;
   }
 }
