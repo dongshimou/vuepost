@@ -1,13 +1,16 @@
 <template>
-<div>
-  <!-- <div v-scroll-loadmore='loadmore'> -->
-<ul v-for="art of articles" :id="art.title">
-   <a href="javascript:void(0)" @click="art_jump(art)">
-     <!-- <single-article :article="art"/> -->
-     <simple-article :article="art"/>
-    </a>
-</ul>
-</div>
+  <div>
+    <!-- <div v-scroll-loadmore='loadmore'> -->
+    <ul v-for="art of articles" :id="art.title">
+      <a href="javascript:void(0)" @click="art_jump(art)">
+        <!-- <single-article :article="art"/> -->
+        <simple-article :article="art" />
+      </a>
+    </ul>
+    <ul>
+      <label id="load_more" @click="load_more()">load more</label>
+    </ul>
+  </div>
 </template>
 <style scoped>
 a {
@@ -19,17 +22,25 @@ a:link,
 a:visited {
   text-decoration: none;
 }
+#load_more {
+  padding: 3px 10px;
+  border-radius: 5px;
+  border: solid black 1px;
+}
+#load_more:hover {
+  background-color: #66ccff33;
+}
 </style>
 
 <script>
 import SingleArticle from "@/components/single_article";
-import SimpleArticle from "@/components/simple_article"
+import SimpleArticle from "@/components/simple_article";
 import GlobalData from "@/components/global";
 
 export default {
   components: {
     "single-article": SingleArticle,
-    "simple-article":SimpleArticle,
+    "simple-article": SimpleArticle,
     GlobalData
   },
   data() {
@@ -38,7 +49,7 @@ export default {
       start_load: false,
       time: new Date(),
       size: 10,
-      on_load_pos:0,
+      on_load_pos: 0
     };
   },
   methods: {
@@ -53,8 +64,8 @@ export default {
     reloadData: function() {
       let address = GlobalData.inter + "/article";
       this.start_load = true;
-      let tstr=this.time.getTime().toString()
-      let t=tstr.substring(0,tstr.length-3)
+      let tstr = this.time.getTime().toString();
+      let t = tstr.substring(0, tstr.length - 3);
       this.$http
         .get(address, {
           params: {
@@ -64,26 +75,26 @@ export default {
         })
         .then(
           res => {
-            if (res.body.code==1000){
-            let data = res.body.data.articles;
-            for (let i = 0; i < data.length; i++) {
-              this.articles.push({
-                title: data[i].title,
-                context: data[i].context.substring(0, 128) + "...",
-                time: data[i].create_datetime,
-                tags: data[i].tags
-              });
-              this.time = new Date(data[i].create_datetime)
+            if (res.body.code == 1000) {
+              let data = res.body.data.articles;
+              for (let i = 0; i < data.length; i++) {
+                this.articles.push({
+                  title: data[i].title,
+                  context: data[i].context.substring(0, 128) + "...",
+                  time: data[i].create_datetime,
+                  tags: data[i].tags
+                });
+                this.time = new Date(data[i].create_datetime);
               }
-            }else{
-              this.$noty.error(res.body.msg)
+            } else {
+              this.$noty.error(res.body.msg);
             }
-            console.log("load time:",this.time.toLocaleString());
+            console.log("load time:", this.time.toLocaleString());
             this.start_load = false;
           },
           res => {
             this.start_load = false;
-            this.$noty.error(res.statusText)
+            this.$noty.error(res.statusText);
           }
         );
     },
@@ -129,15 +140,22 @@ export default {
       return windowHeight;
     },
     scrollLoad: function() {
-        let now_scroll=this.getScrollTop() + this.getWindowHeight()
-        let total_scroll=this.getScrollHeight()
-      if (now_scroll >=total_scroll*0.9) {
+      let now_scroll = this.getScrollTop() + this.getWindowHeight();
+      let total_scroll = this.getScrollHeight();
+      if (now_scroll >= total_scroll * 0.9) {
         if (!this.start_load) {
-          if(this.on_load_pos<total_scroll){
-          this.on_load_pos=total_scroll
-          this.reloadData();
+          if (this.on_load_pos < total_scroll) {
+            this.on_load_pos = total_scroll;
+            this.reloadData();
           }
         }
+      }
+    },
+    load_more: function() {
+      let total_scroll = this.getScrollHeight();
+      if (!this.start_load) {
+          this.on_load_pos = total_scroll;
+          this.reloadData();
       }
     },
     loadmore: function() {
@@ -155,5 +173,4 @@ export default {
 </script>
 
 <style>
-
 </style>
