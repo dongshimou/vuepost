@@ -35,6 +35,9 @@
     <div id="nav-tags">
       <tags-ball :style="{'background-color':'#eeeeee'}" :tags="tags"/>
     </div>
+    <div id="nav-music">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" src="//music.163.com/outchain/player?type=3&id=2069970170&auto=1&height=66"></iframe>
+    </div>
     <div id="nav-mood">
       <mood-label :moods="moods"/>
     </div>
@@ -143,6 +146,13 @@ export default {
 
 
 <style scoped>
+#nav-music{
+  max-width:100%;
+  height: 80px;
+}
+iframe{
+  width: 100%;
+}
 #nav-links {
   margin-top: 15px;
 }
